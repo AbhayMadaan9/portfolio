@@ -14,45 +14,45 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Anuj Jain - Full-stack Python Developer & AI Engineer | Professional Portfolio",
-    template: "%s | Anuj Jain Portfolio"
+    default: "Abhay Madaan - Generative AI Engineer | Python & Full Stack Developer | Professional Portfolio",
+    template: "%s | Abhay Madaan Portfolio"
   },
-  description: "Professional portfolio of Anuj Jain - Full-stack Python Developer & AI Engineer. SIH 2025 Finalist showcasing 25+ automation projects, IoT systems, and AI-powered solutions. Available for internships.",
+  description: "Professional portfolio of Abhay Madaan - Generative AI Engineer and Python & Full Stack Developer. Building RAG pipelines, multi-agent systems, and scalable backends with LangChain, LangGraph, Node.js, and FastAPI.",
   keywords: [
-    "Anuj Jain",
-    "Full-stack Developer", 
+    "Abhay Madaan",
+    "Generative AI Engineer",
+    "Full-stack Developer",
     "Python Developer",
     "AI Engineer",
     "Portfolio",
     "Software Developer",
     "Machine Learning",
-    "IoT Developer",
+    "RAG Pipelines",
     "Web Development",
     "Next.js",
     "React",
     "FastAPI",
-    "Django",
+    "Node.js",
     "Automation",
     "LangChain",
-    "Smart India Hackathon",
-    "Freelancer",
+    "LangGraph",
+    "Multi-Agent Systems",
     "AI Chatbot",
     "Professional Portfolio",
     "Developer Portfolio",
     "Tech Portfolio",
-    "Internship",
-    "Python Automation",
+    "AWS Certified Developer",
     "Web Scraping",
     "API Development"
   ],
   authors: [
     {
-      name: "Anuj Jain",
-      url: "https://portfolio.anujjainbatu.tech/",
+      name: "Abhay Madaan",
+      url: "https://in.linkedin.com/in/abhay-madaan-709175205",
     },
   ],
-  creator: "Anuj Jain",
-  publisher: "Anuj Jain",
+  creator: "Abhay Madaan",
+  publisher: "Abhay Madaan",
   robots: {
     index: true,
     follow: true,
@@ -67,29 +67,29 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://portfolio.anujjainbatu.tech/",
-    title: "Anuj Jain - Full-stack Python Developer & AI Engineer | Professional Portfolio",
-    description: "Professional portfolio showcasing AI-powered projects, IoT systems, and full-stack development. SIH 2025 Finalist with 25+ automation projects. Available for internships.",
-    siteName: "Anuj Jain Portfolio",
+    url: "https://abhaymadaan.dev/",
+    title: "Abhay Madaan - Generative AI Engineer | Python & Full Stack Developer | Professional Portfolio",
+    description: "Professional portfolio showcasing RAG pipelines, multi-agent AI systems, and scalable full-stack applications built with LangChain, LangGraph, Node.js, and FastAPI.",
+    siteName: "Abhay Madaan Portfolio",
     images: [
       {
-        url: "https://portfolio.anujjainbatu.tech/portfolio.png",
+        url: "https://abhaymadaan.dev/profile.jpg",
         width: 1200,
-        height: 630,
-        alt: "Anuj Jain - Professional Portfolio with AI Chatbot",
-        type: "image/png",
+        height: 1200,
+        alt: "Abhay Madaan - Professional Portfolio with AI Chatbot",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anuj Jain - Full-stack Python Developer & AI Engineer",
-    description: "Professional portfolio showcasing AI projects, IoT systems, and automation solutions. SIH 2025 Finalist available for internships.",
-    creator: "@anujainbatu",
-    site: "@anujainbatu",
+    title: "Abhay Madaan - Generative AI Engineer | Python & Full Stack Developer",
+    description: "Professional portfolio showcasing RAG pipelines, multi-agent AI systems, and scalable full-stack applications.",
+    creator: "",
+    site: "",
     images: [{
-      url: "https://portfolio.anujjainbatu.tech/portfolio.png",
-      alt: "Anuj Jain Professional Portfolio"
+      url: "https://abhaymadaan.dev/profile.jpg",
+      alt: "Abhay Madaan Professional Portfolio"
     }],
   },
   icons: {
@@ -104,7 +104,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   alternates: {
-    canonical: "https://portfolio.anujjainbatu.tech/",
+    canonical: "https://abhaymadaan.dev/",
   },
   category: "technology",
   classification: "Portfolio Website",
@@ -123,40 +123,39 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="canonical" href="https://portfolio.anujjainbatu.tech/" />
+        <link rel="canonical" href="https://abhaymadaan.dev/" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Anuj Jain",
-              "jobTitle": "Full-stack Python Developer & AI Engineer",
-              "url": "https://portfolio.anujjainbatu.tech/",
-              "image": "https://portfolio.anujjainbatu.tech/profile.jpeg",
+              "name": "Abhay Madaan",
+              "jobTitle": "Generative AI Engineer | Python & Full Stack Developer",
+              "url": "https://abhaymadaan.dev/",
+              "image": "https://abhaymadaan.dev/profile.jpg",
               "sameAs": [
-                "https://github.com/anujjainbatu",
-                "https://linkedin.com/in/anujjainbatu",
-                "https://x.com/anujainbatu"
+                "https://github.com/AbhayMadaan9",
+                "https://in.linkedin.com/in/abhay-madaan-709175205"
               ],
               "worksFor": {
                 "@type": "Organization",
-                "name": "Freelance"
+                "name": "Gammastack"
               },
               "alumniOf": {
                 "@type": "Organization",
-                "name": "SATI"
+                "name": "Guru Nanak Dev Engineering College, Ludhiana"
               },
               "knowsAbout": [
                 "Python Development",
-                "AI Engineering",
+                "Generative AI Engineering",
+                "RAG Pipelines",
+                "Multi-Agent Systems",
                 "Machine Learning",
-                "IoT Systems",
                 "Web Development",
-                "Automation",
                 "Full Stack Development"
               ],
-              "description": "Full-stack Python Developer & AI Engineer with expertise in building AI-powered solutions, IoT systems, and automation tools. SIH 2025 Finalist with 25+ delivered projects."
+              "description": "Generative AI Engineer and Python & Full Stack Developer with expertise in RAG pipelines, multi-agent orchestration, and production AI systems."
             })
           }}
         />

@@ -115,7 +115,7 @@ const Chat = () => {
       // Handle specific error types
       if (error.message?.includes('quota') || error.message?.includes('exceeded') || error.message?.includes('429')) {
         // Show a friendly notification for quota issues
-        toast.error('⚠️ API Quota Exhausted! Free Gemini API limit reached. Please contact Anuj directly or use preset questions. Thank you for understanding! 🙏', {
+        toast.error('⚠️ API Quota Exhausted! Free Gemini API limit reached. Please contact Abhay directly or use preset questions. Thank you for understanding! 🙏', {
           duration: 6000, // Show for 6 seconds
           style: {
             background: '#fef3c7',
@@ -133,7 +133,7 @@ const Chat = () => {
         try {
           append({
             role: 'assistant',
-            content: '⚠️ **API Quota Exhausted**\n\nFree Gemini API limit reached. Please contact Anuj directly or use preset questions below.',
+            content: '⚠️ **API Quota Exhausted**\n\nFree Gemini API limit reached. Please contact Abhay directly or use preset questions below.',
           });
         } catch (appendError) {
           console.error('Failed to append error message:', appendError);
