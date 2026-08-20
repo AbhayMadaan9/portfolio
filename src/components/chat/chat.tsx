@@ -317,10 +317,10 @@ const Chat = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="container mx-auto flex h-full max-w-3xl flex-col">
+      <div className="mx-auto flex h-full w-full max-w-3xl flex-col px-4">
         {/* Scrollable Chat Content */}
         <div
-          className="flex-1 overflow-y-auto px-2 pb-4"
+          className="flex-1 overflow-y-auto pb-4"
           style={{ paddingTop: `${headerHeight}px` }}
         >
           <AnimatePresence mode="wait">
