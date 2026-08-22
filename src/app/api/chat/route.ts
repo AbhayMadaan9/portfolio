@@ -1,4 +1,4 @@
-import { createGroq } from '@ai-sdk/groq';
+import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { streamText } from 'ai';
 
 import { SYSTEM_PROMPT } from './prompt';
@@ -11,9 +11,9 @@ import { getSkills } from './tools/getSkills';
 
 export const maxDuration = 30;
 
-// Create Groq provider with explicit API key
-const groq = createGroq({
-  apiKey: process.env.GROQ_API_KEY,
+// Create OpenRouter provider with explicit API key
+const openrouter = createOpenRouter({
+  apiKey: process.env.OPENROUTER_API_KEY,
 });
 
 // ❌ Pas besoin de l'export ici, Next.js n'aime pas ça
@@ -36,14 +36,14 @@ export async function POST(req: Request) {
     console.log('[CHAT-API] Incoming messages:', messages);
     
     // Check if API key is available
-    if (!process.env.GROQ_API_KEY) {
-      console.error('[CHAT-API] Missing GROQ_API_KEY environment variable');
+    if (!process.env.OPENROUTER_API_KEY) {
+      console.error('[CHAT-API] Missing OPENROUTER_API_KEY environment variable');
       return new Response('Missing API key', { status: 500 });
     }
     
-    console.log('[CHAT-API] Groq API key available');
+    console.log('[CHAT-API] OpenRouter API key available');
 
-    // UI messages can contain parts and metadata; Groq needs core messages.
+    // UI messages can contain parts and metadata; OpenRouter needs core messages.
     const coreMessages = messages.map(
       (message: {
         role: string;
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
     console.log('[CHAT-API] About to call streamText');
     
     const result = streamText({
-      model: groq('llama-3.3-70b-versatile'),
+      model: openrouter('meta-llama/llama-3.1-8b-instruct:free'),
       messages: [SYSTEM_PROMPT, ...coreMessages],
       tools,
       maxSteps: 2,

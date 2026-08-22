@@ -154,7 +154,7 @@ Example config:
 ## ⚙️ Environment & Validation
 
 - **Environment Variables**:  
-  - `GROQ_API_KEY=your_key`
+  - `OPENROUTER_API_KEY=your_key`
   - `NEXT_PUBLIC_SITE_URL=https://your-site.com` (optional)
 - **Validation**:
     ```bash

@@ -9,9 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ai-sdk/google": "^1.2.22",
-    "@ai-sdk/groq": "^1.2.0",
     "@ai-sdk/react": "^1.2.0",
+    "@openrouter/ai-sdk-provider": "^0.5.0",
     "@radix-ui/react-avatar": "^1.1.3",
     "@radix-ui/react-collapsible": "^1.1.3",
     "@radix-ui/react-icons": "^1.3.2",
