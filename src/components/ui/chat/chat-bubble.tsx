@@ -11,8 +11,8 @@ const chatBubbleVariant = cva(
   {
     variants: {
       variant: {
-        received: "self-start w-full",
-        sent: "self-center flex-row-reverse mx-auto",
+        received: "self-start max-w-full",
+        sent: "self-end max-w-[85%] flex-row-reverse",
       },
       layout: {
         default: "",

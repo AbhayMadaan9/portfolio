@@ -76,15 +76,20 @@ export default function ChatMessageContent({
 }: ChatMessageContentProps) {
   // Only handle text parts
   const renderContent = () => {
-    return message.parts?.map((part, partIndex) => {
-      if (part.type !== 'text' || !part.text) return null;
+    const content =
+      message.parts
+        ?.filter((part) => part.type === 'text')
+        .map((part) => (part.type === 'text' ? part.text : ''))
+        .join('') || message.content;
 
-      // Split content by code block markers
-      const contentParts = part.text.split('```');
+    if (!content) return null;
 
-      return (
-        <div key={partIndex} className="w-full space-y-4">
-          {contentParts.map((content, i) =>
+    // Split content by code block markers
+    const contentParts = content.split('```');
+
+    return (
+      <div className="w-full space-y-4">
+        {contentParts.map((contentPart, i) =>
             i % 2 === 0 ? (
               // Regular text content
               <div key={`text-${i}`} className="prose dark:prose-invert w-full">
@@ -115,17 +120,16 @@ export default function ChatMessageContent({
                     ),
                   }}
                 >
-                  {content}
+                  {contentPart}
                 </Markdown>
               </div>
             ) : (
               // Code block content
-              <CodeBlock key={`code-${i}`} content={content} />
+              <CodeBlock key={`code-${i}`} content={contentPart} />
             )
-          )}
-        </div>
-      );
-    });
+        )}
+      </div>
+    );
   };
 
   return <div className="w-full">{renderContent()}</div>;

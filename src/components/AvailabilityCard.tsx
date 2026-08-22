@@ -186,9 +186,9 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
           What I bring
         </p>
         <p className="text-foreground text-sm">
-          {data?.experience.internshipCompleted || "Real-world ML experience from MookMati (Genre classification, FastAPI deployment, AWS)."} <br /> 
-          {data?.achievements[0] || "2nd position in Smart India Hackathon 2025 among 88,221 teams with hideFlare cybersecurity tool."} <br /> 
-          {data?.experience.freelanceWork || "25+ freelance automation projects delivered on Fiverr, cutting manual work by 60%."}
+          {data?.experience.internshipCompleted || "Real-world AI/ML experience through Genre classification, FastAPI deployment, AWS."} <br /> 
+          {data?.achievements[0] && data?.achievements[0]} <br /> 
+          {data?.experience.freelanceWork || "15+ automation projects delivered, cutting manual work by 60%."}
         </p>
       </div>
 

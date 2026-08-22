@@ -1,6 +1,5 @@
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { streamText, tool } from 'ai';
-import { z } from 'zod';
+import { streamText } from 'ai';
 
 import { SYSTEM_PROMPT } from './prompt';
 import { getContact } from './tools/getContact';
@@ -33,7 +32,7 @@ function errorHandler(error: unknown) {
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
+    const { messages = [] } = await req.json();
     console.log('[CHAT-API] Incoming messages:', messages);
     
     // Check if API key is available
@@ -44,8 +43,13 @@ export async function POST(req: Request) {
     
     console.log('[CHAT-API] API key available:', process.env.GOOGLE_GENERATIVE_AI_API_KEY?.slice(0, 10) + '...');
 
-    // Add system prompt
-    messages.unshift(SYSTEM_PROMPT);
+    // UI messages can contain parts and metadata; Gemini needs core messages.
+    const coreMessages = messages.map(
+      (message: { role: string; content?: string }) => ({
+        role: message.role,
+        content: message.content || '',
+      })
+    );
 
     // Add tools
     const tools = {
@@ -60,16 +64,21 @@ export async function POST(req: Request) {
     console.log('[CHAT-API] About to call streamText');
     
     const result = await streamText({
-      model: google('gemini-1.5-flash'),
-      messages,
+      model: google('gemini-2.5-flash'),
+      messages: [SYSTEM_PROMPT, ...coreMessages],
       tools,
       maxSteps: 2,
+      onError: ({ error }) => {
+        console.error('[CHAT-API] Stream error:', errorHandler(error));
+      },
     });
 
     console.log('[CHAT-API] streamText completed successfully');
     console.log('[CHAT-API] Result object keys:', Object.keys(result));
     
-    const response = result.toDataStreamResponse();
+    const response = result.toDataStreamResponse({
+      getErrorMessage: (error) => errorHandler(error),
+    });
     console.log('[CHAT-API] DataStreamResponse created');
     
     return response;

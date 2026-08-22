@@ -110,7 +110,7 @@ const Chat = () => {
     },
     onError: (error) => {
       setLoadingSubmit(false);
-      console.error('Chat error:', error.message, error.cause);
+      console.warn('Chat request failed:', error.message, error.cause);
       
       // Handle specific error types
       if (error.message?.includes('quota') || error.message?.includes('exceeded') || error.message?.includes('429')) {
@@ -129,15 +129,6 @@ const Chat = () => {
         // Set error message state for frontend display
         setErrorMessage('quota_exhausted');
         
-        // Try to add a chat bubble with the error message
-        try {
-          append({
-            role: 'assistant',
-            content: '⚠️ **API Quota Exhausted**\n\nFree Gemini API limit reached. Please contact Abhay directly or use preset questions below.',
-          });
-        } catch (appendError) {
-          console.error('Failed to append error message:', appendError);
-        }
       } else if (error.message?.includes('network')) {
         toast.error('Network error. Please check your connection and try again.');
         setErrorMessage('Network error. Please check your connection and try again.');
@@ -294,25 +285,6 @@ const Chat = () => {
             </ClientOnly>
           </div>
 
-          <AnimatePresence>
-            {latestUserMessage && !currentAIMessage && (
-              <motion.div
-                {...MOTION_CONFIG}
-                className="mx-auto flex max-w-3xl px-4"
-              >
-                <ChatBubble variant="sent">
-                  <ChatBubbleMessage>
-                    <ChatMessageContent
-                      message={latestUserMessage}
-                      isLast={true}
-                      isLoading={false}
-                      reload={() => Promise.resolve(null)}
-                    />
-                  </ChatBubbleMessage>
-                </ChatBubble>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </div>
 
@@ -419,14 +391,30 @@ const Chat = () => {
                   </ChatBubbleMessage>
                 </ChatBubble>
               </motion.div>
-            ) : currentAIMessage ? (
-              <div className="pb-4">
-                <SimplifiedChatView
-                  message={currentAIMessage}
-                  isLoading={isLoading}
-                  reload={reload}
-                  addToolResult={addToolResult}
-                />
+            ) : messages.length > 0 ? (
+              <div className="flex flex-col gap-5 px-4 pb-4">
+                {messages.map((message) =>
+                  message.role === 'assistant' ? (
+                    <SimplifiedChatView
+                      key={message.id}
+                      message={message}
+                      isLoading={isLoading}
+                      reload={reload}
+                      addToolResult={addToolResult}
+                    />
+                  ) : (
+                    <ChatBubble key={message.id} variant="sent">
+                      <ChatBubbleMessage>
+                        <ChatMessageContent
+                          message={message}
+                          isLast={message.id === latestUserMessage?.id}
+                          isLoading={false}
+                          reload={() => Promise.resolve(null)}
+                        />
+                      </ChatBubbleMessage>
+                    </ChatBubble>
+                  )
+                )}
               </div>
             ) : (
               loadingSubmit && (

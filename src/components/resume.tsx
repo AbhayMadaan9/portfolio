@@ -1,9 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowDownToLine, Download, Eye, File, ExternalLink } from 'lucide-react';
-import Image from 'next/image';
+import { Download, ExternalLink, File } from 'lucide-react';
 import { resumeDetails } from '@/lib/config-loader';
 
 export function Resume() {
@@ -17,12 +14,7 @@ export function Resume() {
   return (
     <div className="mx-auto w-full py-8 font-sans">
       {/* Resume Card */}
-      <motion.div
-        className="group relative overflow-hidden rounded-xl bg-accent p-0 transition-all duration-300 mb-4"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.0, ease: 'easeOut' }}
-      >
+      <div className="group relative mb-4 overflow-hidden rounded-xl bg-accent p-0 transition-all duration-300">
         {/* Details area */}
         <div className="p-5">
           <div className="flex items-center justify-between">
@@ -43,26 +35,19 @@ export function Resume() {
             </div>
 
             {/* Download button */}
-            <motion.button
+            <button
               onClick={handleDownload}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white hover:bg-black/80 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               title="Download PDF"
             >
               <Download className="h-5 w-5" />
-            </motion.button>
+            </button>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* PDF Preview - Always Visible */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-        className="w-full rounded-xl overflow-hidden border bg-white shadow-lg"
-      >
+      <div className="w-full overflow-hidden rounded-xl border bg-white shadow-lg">
         <div className="bg-gray-100 px-4 py-2 flex items-center justify-between border-b">
           <div className="flex items-center gap-2">
             <File className="h-4 w-4 text-gray-600" />
@@ -86,7 +71,7 @@ export function Resume() {
             title="Resume Preview"
           />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
