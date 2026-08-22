@@ -74,7 +74,9 @@ export async function POST(req: Request) {
     console.log('[CHAT-API] About to call streamText');
     
     const result = streamText({
-      model: openrouter('meta-llama/llama-3.1-8b-instruct:free'),
+      model: openrouter(
+        process.env.OPENROUTER_MODEL || 'openrouter/free'
+      ),
       messages: [SYSTEM_PROMPT, ...coreMessages],
       tools,
       maxSteps: 2,

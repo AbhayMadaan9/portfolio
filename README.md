@@ -57,7 +57,9 @@ No coding knowledge required. Just configure, deploy, and showcase your best sel
     - Copy `.env.example` to `.env.local`
     - Add your API key:
       ```
-      GOOGLE_GENERATIVE_AI_API_KEY=your_google_ai_api_key_here
+  OPENROUTER_API_KEY=your_openrouter_api_key_here
+  # Optional: use a specific model instead of OpenRouter's free router
+  OPENROUTER_MODEL=openrouter/free
       ```
 
 5. **Edit Your Info**
@@ -132,9 +134,9 @@ portfolio/
 ## 🧠 AI Chatbot Configuration
 
 - Fully customizable AI chat, driven by your JSON config.
-- Features:
+  - Features:
   - Preset questions & responses
-  - Dynamic AI replies (Google Gemini API)
+  - Dynamic AI replies (OpenRouter API)
   - Mobile optimized
   - Quota management & graceful fallback
 
