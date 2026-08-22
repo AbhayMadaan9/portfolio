@@ -45,9 +45,19 @@ export async function POST(req: Request) {
 
     // UI messages can contain parts and metadata; Gemini needs core messages.
     const coreMessages = messages.map(
-      (message: { role: string; content?: string }) => ({
+      (message: {
+        role: string;
+        content?: string;
+        parts?: Array<{ type?: string; text?: string }>;
+      }) => ({
         role: message.role,
-        content: message.content || '',
+        content:
+          message.content ||
+          message.parts
+            ?.filter((part) => part.type === 'text')
+            .map((part) => part.text || '')
+            .join('') ||
+          '',
       })
     );
 
