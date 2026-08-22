@@ -43,12 +43,6 @@ const Skills = () => {
       color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
     },
     {
-      category: 'IoT & Hardware',
-      icon: <Microchip className="h-5 w-5" />,
-      skills: config.skills.iot_hardware,
-      color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
-    },
-    {
       category: 'Soft Skills',
       icon: <Users className="h-5 w-5" />,
       skills: config.skills.soft_skills,

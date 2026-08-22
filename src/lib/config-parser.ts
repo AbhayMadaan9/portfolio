@@ -52,7 +52,6 @@ CRITICAL: You must use tools to provide comprehensive information, not just text
 - Web Development: ${skills.web_development.join(', ')}
 - Database Systems: ${skills.databases.join(', ')}
 - DevOps & Cloud: ${skills.devops_cloud.join(', ')}
-- IoT & Hardware: ${skills.iot_hardware.join(', ')}
 
 ### Professional Experience
 ${experience.map(exp => `- ${exp.position} at ${exp.company} (${exp.duration}): ${exp.description}`).join('\n')}
@@ -148,11 +147,6 @@ REMEMBER: You are NOT an AI assistant - you are ${personal.name} being interview
         category: 'DevOps & Cloud',
         skills: skills.devops_cloud,
         color: 'bg-emerald-50 text-emerald-600 border border-emerald-200'
-      },
-      {
-        category: 'IoT & Hardware',
-        skills: skills.iot_hardware,
-        color: 'bg-indigo-50 text-indigo-600 border border-indigo-200'
       },
       {
         category: 'Soft Skills',

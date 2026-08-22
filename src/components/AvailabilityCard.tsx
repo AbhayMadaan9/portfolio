@@ -161,7 +161,7 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
                 )) || (
                   <>
                     <li>Docker, Git, GitHub Actions, AWS</li>
-                    <li>Firebase, Heroku, ESP32, IoT</li>
+                    <li>Firebase, Heroku</li>
                     <li>Machine Learning, AI Agents</li>
                     <li>Web Scraping, Automation</li>
                   </>
