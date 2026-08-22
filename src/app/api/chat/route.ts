@@ -74,7 +74,7 @@ export async function POST(req: Request) {
     console.log('[CHAT-API] About to call streamText');
     
     const result = streamText({
-      model: groq('gemma2-9b-it'),
+      model: groq('llama-3.3-70b-versatile'),
       messages: [SYSTEM_PROMPT, ...coreMessages],
       tools,
       maxSteps: 2,
