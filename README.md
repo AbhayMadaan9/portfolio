@@ -154,7 +154,7 @@ Example config:
 ## ⚙️ Environment & Validation
 
 - **Environment Variables**:  
-  - `GOOGLE_GENERATIVE_AI_API_KEY=your_key`
+  - `GROQ_API_KEY=your_key`
   - `NEXT_PUBLIC_SITE_URL=https://your-site.com` (optional)
 - **Validation**:
     ```bash

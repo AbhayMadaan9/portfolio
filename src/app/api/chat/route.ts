@@ -1,4 +1,4 @@
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
 import { streamText } from 'ai';
 
 import { SYSTEM_PROMPT } from './prompt';
@@ -11,9 +11,9 @@ import { getSkills } from './tools/getSkills';
 
 export const maxDuration = 30;
 
-// Create Google AI provider with explicit API key
-const google = createGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+// Create Groq provider with explicit API key
+const groq = createGroq({
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 // ❌ Pas besoin de l'export ici, Next.js n'aime pas ça
@@ -36,14 +36,14 @@ export async function POST(req: Request) {
     console.log('[CHAT-API] Incoming messages:', messages);
     
     // Check if API key is available
-    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
-      console.error('[CHAT-API] Missing GOOGLE_GENERATIVE_AI_API_KEY environment variable');
+    if (!process.env.GROQ_API_KEY) {
+      console.error('[CHAT-API] Missing GROQ_API_KEY environment variable');
       return new Response('Missing API key', { status: 500 });
     }
     
-    console.log('[CHAT-API] API key available:', process.env.GOOGLE_GENERATIVE_AI_API_KEY?.slice(0, 10) + '...');
+    console.log('[CHAT-API] Groq API key available');
 
-    // UI messages can contain parts and metadata; Gemini needs core messages.
+    // UI messages can contain parts and metadata; Groq needs core messages.
     const coreMessages = messages.map(
       (message: {
         role: string;
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
     console.log('[CHAT-API] About to call streamText');
     
     const result = await streamText({
-      model: google('gemini-3.6-flash'),
+      model: groq('llama-3.3-70b-versatile'),
       messages: [SYSTEM_PROMPT, ...coreMessages],
       tools,
       maxSteps: 2,
@@ -88,6 +88,11 @@ export async function POST(req: Request) {
     
     const response = result.toDataStreamResponse({
       getErrorMessage: (error) => errorHandler(error),
+      headers: {
+        'Cache-Control': 'no-cache, no-transform',
+        Connection: 'keep-alive',
+        'X-Accel-Buffering': 'no',
+      },
     });
     console.log('[CHAT-API] DataStreamResponse created');
     
